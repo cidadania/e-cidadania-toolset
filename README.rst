@@ -9,6 +9,8 @@ documentation, nightlies, i18n catalogs, etc.
 *This toolset is still on development, since most of the tools are scattered through the e-cidadania repositories. We recommend people to use the integrated
 scripts in e-cidadania while we port them here.*
 
+*This toolset is preconfigured for e-cidadania, but it's easy to modify to work with other django projects, take a look to the documentation below.*
+
 Status:
 
 - downloader.py: 90% - PASSED
