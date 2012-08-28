@@ -11,15 +11,19 @@ import os
 import subprocess
 import argparse
 import downloader
+import config
 
 class Documents():
+
+    def __init__(self):
+        downloader.download_code()
+        os.chdir(config.DOCS_DIR)
 
     def compile_docs(self):
 
         """
         Compile all the documentation and languages at once.
         """
-        os.chdir(self.cwd + '/../ecidadania/docs/')
         sys.stdout.write("\n >> Compiling documentation... ")
         sys.stdout.flush()
 
@@ -115,16 +119,9 @@ class Documents():
             c += 1
 
     def make_all(self, branch):
-        if len(sys.argv) == 1:
-            self.download_code(branch)
-        else:
-            self.download_code(sys.argv[1])
         self.compile_docs()
         self.pack_latex()
         self.copy_docs()
 
 doc = Documents()
-if len(sys.argv) == 1:
-    doc.make_all('master')
-else:
-    doc.make_all(sys.argv[1])
+doc.make_all()
