@@ -39,8 +39,7 @@ def download_code(branch='master'):
     a working one.
     """
     i = 0
-    print "\n >> Getting e-cidadania codebase from %s..." % repos[i].split('/')[2]
-    print "DEBUG: BRANCH=%s" % branch
+    print "\n >> Getting e-cidadania codebase from %s:%s..." % (repos[i].split('/')[2], branch)
     done = False
     while not done:
         if i <= (len(repos) - 1):
