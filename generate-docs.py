@@ -1,76 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" This script download the latest git version of e-cidadania, compiles
-the documentation and places it in the documentation website
+"""
+This script download the latest git version of e-cidadania, compiles
+the documentation and places it in the documentation website.
 """
 
 import sys
 import os
 import subprocess
 import argparse
-
-
-__author__ = "Oscar Carballal Prego"
-__license__ = "GPLv3"
-__version__ = "0.2"
-__email__ = "oscar.carballal@cidadania.coop"
-__status__ = "Stable/Production"
+import downloader
 
 class Documents():
-
-    """
-    Document class.
-    """
-    def __init__(self):
-
-        """
-        Declare variables.
-        """
-        self.cwd = os.getcwd()
-        self.langs = ["es", "en", "gl"]
-        self.formats = ["html", "latex", "latexpdf"]
-
-        # We don't include cidadania's server repository because it
-        # needs authentication and some specific settings.
-        self.repos = [
-            "git://github.com/cidadania/e-cidadania.git",
-            "git://github.com/oscarcp/e-cidadania.git",
-            "git://gitorious.org/e-cidadania/mainline.git",
-            "git://repo.or.cz/e_cidadania.git",
-        ]
-
-    def download_code(self, branch='master'):
-
-        """
-        Download the latest code from the e-cidadania repositories. It the
-        clone fails it will try with the next repository until it finds
-        a working one.
-        """
-        i = 0
-        print "\n >> Getting e-cidadania codebase from %s..." % self.repos[i].split('/')[2]
-        print "DEBUG: BRANCH=%s" % branch
-        done = False
-        while not done:
-            if i <= (len(self.repos) - 1):
-                try:
-                    get_code = subprocess.check_call('git clone -b ' + branch + ' ' + self.repos[i] + ' ../ecidadania > /dev/null 2>&1', shell=True)
-                    done = True
-                except:
-                    print " -- Couldn't get the code from %s" % self.repos[i].split('/')[2]
-                    i += 1
-            else:
-                import shutil
-                print "\n EE Couldn't get the e-cidadania codebase. This can be caused by an old copy of the codebase."
-                print " -- Trying to delete the old codebase..."
-                try:
-                    os.chdir('../')
-                    shutil.rmtree('ecidadania/')
-                    print " -- Code succesfully deleted. Please run the application again.\n"
-                    os.chdir('scripts/')
-                except:
-                    print " -- There was some error trying to delete the old codebase. Exiting.\n"
-                sys.exit()
 
     def compile_docs(self):
 
