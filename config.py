@@ -5,5 +5,7 @@ import os
 
 cwd = os.getcwd()
 
-DOCS_DIR = cwd + ''
-DOWNLOADS_DIR = cwd + ''
+# You have to write the full routes to the directories, you can use the cwd
+# variable if it's useful to you.
+DOCS_DIR = ''
+DOWNLOADS_DIR = ''
