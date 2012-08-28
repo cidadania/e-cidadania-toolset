@@ -18,9 +18,11 @@
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
 import os, sys
-from downloader import *
+import downloader
 import tarfile
 import datetime
+import shutil
+import config
 
 def exclude_gitdir(file):
 	"""
@@ -32,11 +34,18 @@ def exclude_gitdir(file):
 		_return = True
 	return _return
 
-# Download the code from e-cidadania in the current directory
-download_code()
+downloader.download_code()
 
-print " * Compressing nightly..."
+print " >> Compressing tar.gz file..."
 now = datetime.datetime.now().strftime('%Y%m%d')
-f = tarfile.open('ecidadania-nightly-%s.tar.gz' % now, 'w:gz')
+fname = 'ecidadania-nightly-%s.tar.gz' % now
+
+f = tarfile.open(fname, 'w:gz')
 f.add('ecidadania/', exclude=exclude_gitdir)
 f.close()
+
+print " >> Copying the file into destination..."
+try:
+	shutil.copy(fname, config.DOWNLOADS_DIR)
+except:
+	print " EE Couldn't copy the nighly."
