@@ -13,7 +13,7 @@ scripts in e-cidadania while we port them here.*
 
 Status:
 
-- downloader.py: 90% - PASSED
+- downloader.py: 100% - PASSED
 - make_nightlies: 100% - PASSED
 - make_docs: 80% - NOT TESTED
 - make_i18n: 0% - NOT TESTED
